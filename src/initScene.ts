@@ -25,6 +25,7 @@ export let renderer: THREE.WebGLRenderer = null;
 export let cursorX: number = 0;
 export let cursorY: number = 0;
 export let camera: THREE.PerspectiveCamera = null;
+export let cameraInitPosition: THREE.Vector3 = new THREE.Vector3(0, 0, 0);
 
 export const initScene = (configs: Configs) => {
   const width = configs.width ?? 2048;
@@ -36,9 +37,7 @@ export const initScene = (configs: Configs) => {
 
   // Create a basic perspective camera
   camera = new THREE.PerspectiveCamera(75, width / height, 1, 5000);
-  camera.position.x = 0;
-  camera.position.y = 0;
-  camera.position.z = 0;
+  camera.position.set(cameraInitPosition.x, cameraInitPosition.y, cameraInitPosition.z);
   // Create a renderer with Antialiasing
   renderer = new THREE.WebGLRenderer({ antialias: true });
   // Configure renderer clear color
