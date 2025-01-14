@@ -71,10 +71,18 @@ export class SpineAnimator {
     this.skeletonMesh = new threejsSpine.SkeletonMesh(
       skeletonData,
       (parameters) => {
+        parameters.transparent = true;
+        parameters.alphaTest = 0.00001;
+        parameters.premultipliedAlpha = true;
         parameters.depthTest = true;
         parameters.depthWrite = false;
+        parameters.lights = false;
       }
     );
+
+    // 设置渲染顺序
+    this.skeletonMesh.renderOrder = 0;
+    this.skeletonMesh.scale.set(1 / skeletonJsonOrBinary.scale, 1 / skeletonJsonOrBinary.scale, 1);
 
     // set default animation on track 0
     this.skeletonMesh.state.setAnimation(0, meshConfig.animationName, true);
