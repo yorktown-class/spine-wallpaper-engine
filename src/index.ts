@@ -162,4 +162,23 @@ const main = async () => {
   requestAnimationFrame(waitLoad);
 };
 
+// if (window.wallpaperPropertyListener) {
+window.wallpaperPropertyListener = {
+  applyUserProperties: function(properties: any) {
+    if (!Scene.camera) return;
+    if (properties.x) {
+      Scene.camera.position.x = properties.x.value;
+    }
+    if (properties.y) {
+      Scene.camera.position.y = properties.y.value;
+    }
+    if (properties.z) {
+      Scene.camera.position.z = properties.z.value;
+    }
+    Scene.camera.updateProjectionMatrix();
+  },
+};
+// }
+
+
 main();
